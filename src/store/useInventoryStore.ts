@@ -155,7 +155,7 @@ const mockBins: Bin[] = [
         utilizationRate: 7.5 // 150/2000*100
       }
     ],
-    availableVolume: 2000 - (900 + 400 + 150) // 550
+    availableVolume: (900 + 400 + 150) // 550
   },
   {
     id: 'Bin-2',
@@ -187,7 +187,7 @@ const mockBins: Bin[] = [
         utilizationRate: 20.0 // 300/1500*100
       }
     ],
-    availableVolume: 1500 - (600 + 300) // 600
+    availableVolume:  (600 + 300) // 600
   },
   {
     id: 'Bin-3',
@@ -230,7 +230,7 @@ const mockBins: Bin[] = [
         utilizationRate: 5.6 // 100/1800*100
       }
     ],
-    availableVolume: 1800 - (800 + 400 + 100) // 500
+    availableVolume: 0+ (800 + 400 + 100) // 500
   },
   {
     id: 'Bin-4',
@@ -262,7 +262,7 @@ const mockBins: Bin[] = [
         utilizationRate: 16.7 // 200/1200*100
       }
     ],
-    availableVolume: 1200 - (500 + 200) // 500
+    availableVolume: 0+(500 + 200) // 500
   }
 ];
 
@@ -386,8 +386,13 @@ export const useInventoryStore = create<InventoryStore>((set, get) => ({
             ? {
                 ...b,
                 availableVolume: newAvailableVolume,
-                allocations: b.allocations.map((a) =>
-                  a.agencyId === agencyId
+                allocations: b.allocations.map((a, index) =>
+                  index === 0
+                    ? {
+                        ...a,
+                        physicalUnits: a.physicalUnits - quantity,
+                      }
+                    : a.agencyId === agencyId
                     ? {
                         ...a,
                         allocatedUnits: a.allocatedUnits - quantity,

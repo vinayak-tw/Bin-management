@@ -38,8 +38,8 @@ export const Header: React.FC = () => {
               <User className="w-4 h-4 text-green-100" />
             </div>
             <div>
-              <span className="text-sm font-medium text-green-100">John Doe</span>
-              <p className="text-xs text-green-200">Farm Manager</p>
+              <span className="text-sm font-medium text-green-100">Franklin Sisters Inc</span>
+              <p className="text-xs text-green-200">Sales Rep</p>
             </div>
           </div>
         </div>
